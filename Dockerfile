@@ -18,7 +18,7 @@ COPY . .
 # Run the build script
 RUN npm run build
 
-FROM arm64v8/nginx
+FROM arm64v8/nginx:alpine
 # Copy the built app from the previous stage
 
 COPY --from=builder /app/build/ /usr/share/nginx/html
