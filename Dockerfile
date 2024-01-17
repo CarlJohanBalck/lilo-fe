@@ -18,7 +18,7 @@ COPY . .
 # Run the build script
 RUN npm run build
 
-FROM alpine:3.14
+FROM nginx:alpine
 # Copy the built app from the previous stage
 
 COPY --from=builder /app/build/ /usr/share/nginx/html
