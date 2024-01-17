@@ -9,6 +9,7 @@ function Tell() {
     status: false,
     done: false,
     daysSince: 0,
+    date: "",
     errorLoading: false
   });
 
@@ -21,7 +22,7 @@ function Tell() {
     .then(response => response.json())
     .then(json => {
         console.log("json: ", json)
-        setStatus({status: json[0], daysSince: json[1], done: true, errorLoading: false},
+        setStatus({status: json[0], daysSince: json[1], date: json[2], done: true, errorLoading: false},
             )
     })
     .catch(function() {
@@ -29,13 +30,14 @@ function Tell() {
         console.log("error")
     })
 }, [])
-const { done, errorLoading, daysSince } = status
+const { done, errorLoading, daysSince, date } = status
   return (
     <React.Fragment>
         {!errorLoading && done && (
             <div>
                 <div className={`${status.status ? "lilo_green" : "lilo_red"}`}>{`${status.status ? "JA!" : "NEJ!"}`}</div>
                 <div className='days'>Dagar sen sist: {daysSince}</div>
+                <div className='days'>Datum: {date}</div>
             </div>
         )}
     {errorLoading && (
