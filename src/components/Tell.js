@@ -13,6 +13,25 @@ function Tell() {
     errorLoading: false
   });
 
+
+ function print() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: ""
+    };
+    fetch(config.lilo_fick, requestOptions)
+        .then(response => response.json())
+        .then(json => {
+           console.log("response: ", json)
+        })
+        .catch(function() {
+        console.log("error")
+        })
+    }
+ 
+
+
   useEffect(() => {
     const requestOptions = {
         method: 'GET',
@@ -38,6 +57,7 @@ const { done, errorLoading, daysSince, date } = status
                 <div className={`${status.status ? "lilo_green" : "lilo_red"}`}>{`${status.status ? "JA!" : "NEJ!"}`}</div>
                 <div className='days'>Dagar sen sist: {daysSince}</div>
                 <div className='days'>Datum: {date}</div>
+                <button onClick={print}>Lilo fick</button>
             </div>
         )}
     {errorLoading && (
